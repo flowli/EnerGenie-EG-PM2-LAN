@@ -1,6 +1,6 @@
 <?php
 require_once dirname(__FILE__) . '/class.EnerGenieSwitcher.php';
-$egs = new EnerGenieSwitcher('10.49.0.103', true);
+$egs = new EnerGenieSwitcher('1.2.3.4', 'my-password');
 $egs->doSwitch(array(
 	1 => EnerGenieSwitcher::ON,
 	2 => EnerGenieSwitcher::OFF,
