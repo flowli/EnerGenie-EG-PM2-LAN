@@ -19,12 +19,17 @@ class EnerGenieSwitcher {
 		$this->postRequest('http://'.$this->ip.'/login.html', array('pw' => $this->password));
 	}
 
+	public function doLogout() {
+		$this->postRequest('http://'.$this->ip.'/login.html', array('pw' => ''));
+	}
+
 	/**
 	 * Get status
 	 */
 	public function getStatus() {
 		$this->doLogin();
 		$html = $this->getRequest('http://'.$this->ip.'/energenie.html', array());
+		$this->doLogout();
 		preg_match_all('/var sockstates \= \[([0-1],[0,1],[0,1],[0,1])\]/', $html, $matches);
 		if(!isset($matches[1][0])) { return false; }
 		$states = explode(',', $matches[1][0]);
@@ -47,6 +52,7 @@ class EnerGenieSwitcher {
 			}
 			$this->postRequest('http://'.$this->ip, $params);
 		}
+		$this->doLogout();
 	}
 
 	function postRequest($url, $fields) {
