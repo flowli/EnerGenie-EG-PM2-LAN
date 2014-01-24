@@ -110,8 +110,8 @@ class EnerGenieSwitcher
 						$params['cte'.$port] = $state;
 						}
 					}
+				$this->postRequest('http://'.$this->ip, $params);
 				}
-			$this->postRequest('http://'.$this->ip, $params);
 			$this->doLogout();
 			}
 		}
